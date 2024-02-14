@@ -23,10 +23,10 @@ MASK = {
 #     # "9": "Eltex_MES2408"
 # }
 
-VENDORS = {"1": {"1": "ELTEX_2308P", "2": "MES2428", "3": "MES2408CP", "4": "MES2408CP-LIFT", "5": "MES2424"},
-           "2": {"1": "QSW2850_28T", "2": "QSW2800_28T", "3": "QSW3750_28T",
-                 "4": "QSW3470_28T", "5": "QSW4610_28T", "6": "QSW3500_10T"},
-           "3": {"1": "SNR_S2982G_24TE", "2": "SNR_S2985G_24TE"}
+VENDORS = {"ELTEX": {"ELTEX_2308P", "MES2428", "MES2408CP", "MES2408CP-LIFT", "MES2424"},
+           "Qtech": {"QSW2850_28T", "QSW2800_28T", "QSW3750_28T",
+                 "QSW3470_28T", "QSW4610_28T", "QSW3500_10T"},
+           "SNR": {"SNR_S2982G_24TE", "SNR_S2985G_24TE"}
            }
 
 
@@ -96,7 +96,7 @@ def pppoe_main_check(range):
             return main_vlan
     print('Вы ввели неверные данные, попробуйте ещё раз')
 
-
+'''
 print("1 - ELTEX\n2 - QTECH\n3 - SNR")
 vendor_number = input("Введите номер соответствующий производителю:")
 MODELS = VENDORS.get(vendor_number)
@@ -127,4 +127,4 @@ print(new_text, file=output2)
 config_ring.close()
 output.close()
 output2.close()
-
+'''

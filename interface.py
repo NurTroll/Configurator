@@ -1,7 +1,8 @@
+
 from PyQt6.QtCore import QSize, Qt
 from PyQt6.QtWidgets import QApplication, QMainWindow, QLabel, QLineEdit, QFormLayout, QWidget, QPushButton, QComboBox
 import sys  # Только для доступа к аргументам командной строки
-
+from Configurator import autoconfigurator
 
 # Подкласс QMainWindow для настройки главного окна приложения
 class MainWindow(QMainWindow):
@@ -17,8 +18,9 @@ class MainWindow(QMainWindow):
         self.hostname_input.setPlaceholderText("Введите Hostname коммутатора")
         self.hostname_input.setMaxLength(15)
         self.vendor_box = QComboBox()
-        self.vendor_box.addItems(["Qtech", "Eltex", "SNR"])
+        self.vendor_box.addItems(autoconfigurator.VENDORS)
         self.model_box = QComboBox()
+        self.model_box.addItems(autoconfigurator.VENDORS[self.vendor_box.currentText()])
         self.vendor_box.currentTextChanged.connect(self.chenged_vendor_box)
         self.button = QPushButton("Создать конфигурацию")
         self.button.clicked.connect(self.the_button_was_clicked)
@@ -40,12 +42,8 @@ class MainWindow(QMainWindow):
 
 
     def chenged_vendor_box(self):
-        if self.vendor_box.currentText() == 'SNR':
-            self.model_box.clear()
-            self.model_box.addItems(['1', '2', '3'])
-        elif self.vendor_box.currentText() == "Eltex":
-            self.model_box.clear()
-            self.model_box.addItems(['4', '5', '6'])
+        self.model_box.clear()
+        self.model_box.addItems(autoconfigurator.VENDORS[self.vendor_box.currentText()])
 
 
 app = QApplication(sys.argv)
